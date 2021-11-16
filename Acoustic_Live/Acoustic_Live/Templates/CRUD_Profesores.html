@@ -1,0 +1,118 @@
+{% extends 'Base.html' %}
+
+ {% block title %}
+     Acoustic Live | Mis_Videos
+ {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<script type="text/javascript">
+    var id_profesor = " ";
+    var id_leccion = " ";
+    var ordena = " ";
+    var nivell = " ";
+    function clicked(e, id_prof, id_lecc, orden, nivel) {
+      id_profesor = id_prof;
+      id_leccion = id_lecc;
+      ordena = orden;
+      nivell = nivel;
+    }
+
+    function clicked2(e) {
+      var path = 'Eliminar_video/'+id_profesor+'/'+ id_leccion + '/'+ ordena + '/'+ nivell; // this is where I'm stuck
+      window.location.replace("http://127.0.0.1:8000/" + path);
+    }
+
+</script>
+
+<div class="container-fluid" style="padding-top: 90px;">
+    <link rel="stylesheet" href="{% static '/css/fondo.css' %}" >
+
+    
+    {% if messages %}
+    <div class="ventana">
+        <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+
+    <form action="/Inicio_Profesores/" method="GET">       
+      <input type="image" name="boton_back" style="margin-left: 20px; " src="{% static 'Imagenes/flechita.png' %}" alt="Volver atras" width="50" height="50">                
+    </form>
+    <div class="container-fluid contenedor">
+      <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th class="text-center">T&iacute;tulo</th>
+                <th class="text-center">Descripci&oacute;n</th>
+                <th class="text-center">Edici&oacute;n</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for leccion in lecciones %}
+              <tr>
+                <td>{{ leccion.nombre_leccion  }}</td><!--{{video.nombre}}-->
+                <td> {{ leccion.descripcion }} </td> <!--{{video.descripcion}}-->
+                <td>
+
+                  {% ifequal 1 leccion.orden %}
+                  
+                    <center><a href="/Bajar/3/{{ leccion.orden }}/{{ leccion.nivel }}" class="btn btn-secondary" style="margin-right: 2%; margin-top: 2%;">Bajar</a></center>
+                  
+                  {% else %}
+                    {% ifequal cantidad leccion.orden %}
+                  
+                    <center><a href="/Subir/3/{{ leccion.orden }}/{{ leccion.nivel }}" class="btn btn-secondary" style="margin-right: 2%; margin-left: 2%;margin-top: 2%;">Subir</a></center>
+
+                    {% else %}
+
+                      <center><a href="/Subir/3/{{ leccion.orden }}/{{ leccion.nivel }}" class="btn btn-secondary" style="margin-right: 2%; margin-left: 2%;margin-top: 2%;">Subir</a>
+                      <a href="/Bajar/3/{{ leccion.orden }}/{{ leccion.nivel }}" class="btn btn-secondary" style="margin-right: 2%; margin-top: 2%;">Bajar</a></center>
+                    
+                    {% endifequal %}
+                  {% endifequal %}
+                    <center><a href="/Editar_video/{{leccion.id}}/{{leccion.nivel}}" class="btn btn-secondary" style="margin-right: 2%; margin-top: 2%;">Editar</a></center>
+                    <center> <a href="#exampleModal" id="{{leccion.id}}" class="btn btn-danger" style="margin-right: 2%; margin-top: 2%;" onclick="clicked(event,'3', '{{ leccion.id }}', '{{ leccion.orden }}','{{ leccion.nivel }}')" data-bs-toggle="modal">Eliminar</a></center>
+                </td>
+              </tr> 
+              
+              {% endfor %}
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Seguro que desea eliminar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" class="btn btn-primary" onclick="clicked2(event)" >Aceptar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>  
+                </div>
+              </div>
+            </div>
+        </div>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
+         
+        </div>
+        <form action="/vista_videos_para_profesores/3/{{nivel}}" method="GET">   
+          <center><input type="submit" class="btn btn-dark w-150" value="Ver en la p&aacute;gina"></center>
+        </form>
+     </div>
+    </div>
+     
+</div>    
+
+{% endblock %}

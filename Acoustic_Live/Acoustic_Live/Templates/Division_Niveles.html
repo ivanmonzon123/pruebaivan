@@ -1,0 +1,85 @@
+{% extends 'Base.html' %}
+
+ {% block title %}
+    Acoustic Live | Mis Cursos
+ {% endblock %}
+
+{% block content %}
+{% load static %}        
+<div class="container-fluid" style="background-color: #343F4B;padding-top: 6rem;padding-bottom: 0.1rem;">
+       
+        <div class="row">
+            <div class="col-lg-1 col-md-2 col-sm-2">
+                    <form action="/Inicio/" method="GET">       
+                        <input type="image" name="boton_back" style="margin-left: 20px;" src="{% static 'Imagenes/boton_atras.png' %}" alt="Volver atras" width="50" height="50">                
+                    </form>
+            </div>
+        <div class="col-lg-11 col-md-10 col-sm-10">    
+                <h1 style="color: white;">
+                    Elige por donde comenzar
+                </h1>
+                <p style="color: white;">
+                    El artista no es nada sin el don, pero el don no es nada sin el trabajo
+                </p>
+            </div>
+        </div>
+</div>
+<!--Aqui comienza el cuerpo de la paginan, container-fluid hara que la imagen de fondo se vaya reduciendo a medidad
+de que el dispositivo cambie de tamaño-->
+    <div class="container-fluid">
+        <link rel="stylesheet" href="{% static '/css/fondo.css' %}" > 
+<!--En este container iran las tres diviciones de nivel-->
+        <div class="container contenedor mb-5">
+<!--La clase row es para que podamos hacer el responsive junto a los col, siendo col cada columna que contiene la
+imagen, el nombre del nivel y la descripcion. col-lg(grande), col-md(medio), y col-sm(pequeño) corresponden al tamaño
+que tomara el contenerdor cuando el dispositivo sea tamaño grande(computadora,tele), medio(tablets) y 
+pequeño(celulares). paddin-top sirve para hacer que las letras ocupen la parte de abajo del container-->            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top: 60px;">  
+                    <div class="container" id="principiante"  style="height: 95%;">
+                        <link rel="stylesheet" href="{% static '/css/imagenes.css' %}" > 
+                        <div>
+                            <h1 style="padding-top: 160px;">Nivel Principiante</h1>
+                            <p style="text-shadow: black 0.1em 0.1em 0.2em;"> El Nivel Principiante es especial para quienes quieren aprender a tocar guitarra desde CERO. Se compone de varios profesores para aprender a tocar guitarra ac&uacute;stica donde aprender&aacute;s:
+                             partes de la guitarra, teor&iacute;a musical, ejercicios de digitaci&oacute;n, ejercicios de rasgueo y lectura musical.</p>
+                        </div>
+<!--La clase btn-block sirve para que el boton quede mas alargado-->                        
+                    </div>
+                    
+                    <form action="/Profesores_Nivel_Principiante/" method="GET">                      
+                        <div class="row mx-3" ><input type="submit" value = "Ver m&aacute;s" class="btn btn-dark btn-block" >
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top: 60px;">
+                    <div class="container" id="medio"  style="height: 95%;">
+                        <link rel="stylesheet" href="{% static '/css/imagenes.css' %}" >
+                        <div >
+                            <h1 style="padding-top: 160px;">Nivel Medio</h1>
+                            <p style="text-shadow: black 0.1em 0.1em 0.2em;">En este curso de guitarra online podr&aacute;s adquirir nuevos conocimientos y mejorar los que ya tienes. En este nivel aprender&aacute;s:
+                            introducci&oacute;n a acordes, tipos de acordes, arpegios y aprender&aacute;s a tocar tus primeras canciones.</p>
+                        </div>
+                    </div>
+
+                    <form action="/Profesores_Nivel_Medio/" method="GET">                      
+                        <div class="row mx-3" ><input type="submit" value = "Ver m&aacute;s" class="btn btn-dark btn-block" ></div>
+                    </form>
+
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" style="margin-top: 60px;">
+                    <div class="container" id="avanzado"  style="height: 95%;">
+                        <link rel="stylesheet" href="{% static '/css/imagenes.css' %}">
+                        <div>
+                            <h1 style="padding-top: 160px;">Nivel Avanzado</h1>
+                            <p style="text-shadow: black 0.1em 0.1em 0.2em;">En este nivel aprender&aacute;s nuevas t&eacute;cnicas con las habilidades que desarrollaste en los cursos previos, lo que ver&aacute;s ser&aacute;: tocar canciones con capo, cambiar la tonalidad en una canci&oacute;n, escala mayor, circulos arm&oacute;nicos y finger style. </p></div>
+                        
+                    </div>
+                    
+                    <form action="/Profesores_Nivel_Avanzado/" method="GET">                      
+                        <div class="row mx-3" style="padding-bottom: 50px;" ><input type="submit" value = "Ver m&aacute;s" class="btn btn-dark btn-block" ></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock %}

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <link rel="icon" href="{% static '/imagenes/icon.ico' %}">
+
+<script type="text/javascript">
+$(document).ready(function() {
+    setTimeout(function() {
+        $(".ventana").fadeOut(1500);
+    },4000);
+ 
+    // setTimeout(function() {
+    //     $(".content2").fadeIn(1500);
+    // },6000);
+    });
+</script>
+    <title>
+        {% block title %}    {% endblock %}
+    </title>
+</head>
+<body>
+    <!-- cabezera ini-->
+    <nav style="z-index: 2;">
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="/Inicio/" class="enlace">
+            <img src="{% static 'Imagenes/Logo.jpg' %}" alt="" class="logo">
+        </a>
+        <div class="men">
+            <div class="iz">
+                <ul>
+                    <li><a href="/Inicio/">Inicio</a></li>
+                    <li><a href="/Mis_Cursos">Mis Cursos</a></li>
+                </ul>
+            </div>
+            <div class="der">
+                <ul>
+                    <li><a href="/Login/">Ingresar</a></li>
+                    <!-- <li><a href="#">Cerrar sesi&oacute;n</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section></section> 
+    <!-- cabezera fin-->
+     {% block content %}   {% endblock %}
+     <footer style="margin-top: 2%; padding-bottom: 1%; background-color: #111; padding-top: 1.5%; color: #fff;">
+        <div class="footer-content">
+            <ul class="socials">
+                <li><a href="https://www.facebook.com/Acoustic-Live-105974658569772"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://www.instagram.com/acoustic_live2021/"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="https://twitter.com/acoustic_live21"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+            <h6 class="text-light">Powered by CodeMasters</h6> 
+        </div>
+    </footer>
+     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
